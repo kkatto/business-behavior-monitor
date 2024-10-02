@@ -45,16 +45,6 @@ public class RedisPush implements IPush {
                 .setKeepAlive(true);
 
         this.redissonClient = Redisson.create(config);
-
-        RTopic topic = this.redissonClient.getTopic("business-behavior-monitor-sdk-topic");
-        topic.addListener(LogMessage.class, new Listener());
-    }
-
-    class Listener implements MessageListener<LogMessage> {
-        @Override
-        public void onMessage(CharSequence channel, LogMessage logMessage) {
-            logger.info("接收消息：{}", JSON.toJSONString(logMessage));
-        }
     }
 
     @Override

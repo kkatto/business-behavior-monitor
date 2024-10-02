@@ -1,6 +1,9 @@
 package com.kou.monitor.infrastructure.dao;
 
+import com.kou.monitor.infrastructure.po.MonitorDataMapNodeField;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author KouJY
@@ -9,4 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface IMonitorDataMapNodeFieldDao {
+
+    List<MonitorDataMapNodeField> queryMonitorDataMapNodeFiledList(MonitorDataMapNodeField monitorDataMapNodeFieldReq);
 }
