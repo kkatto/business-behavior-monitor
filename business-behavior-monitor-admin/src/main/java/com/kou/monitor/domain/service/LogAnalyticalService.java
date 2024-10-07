@@ -86,4 +86,9 @@ public class LogAnalyticalService implements ILogAnalyticalService {
     public MonitorTreeConfigVO queryMonitorFlowData(String monitorId) {
         return monitorRepository.queryMonitorFlowData(monitorId);
     }
+
+    @Override
+    public List<MonitorDataEntity> queryMonitorDataList(MonitorDataEntity monitorDataEntity) {
+        return monitorRepository.queryMonitorDataList(monitorDataEntity);
+    }
 }

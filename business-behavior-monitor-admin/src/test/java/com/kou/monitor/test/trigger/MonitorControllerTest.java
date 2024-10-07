@@ -2,6 +2,7 @@ package com.kou.monitor.test.trigger;
 
 import com.alibaba.fastjson2.JSON;
 import com.kou.monitor.trigger.http.MonitorController;
+import com.kou.monitor.trigger.http.dto.MonitorDataDTO;
 import com.kou.monitor.trigger.http.dto.MonitorDataMapDTO;
 import com.kou.monitor.trigger.http.dto.MonitorFlowDataDTO;
 import com.kou.monitor.types.Response;
@@ -39,4 +40,9 @@ public class MonitorControllerTest {
         log.info("测试结果: {}", JSON.toJSONString(response));
     }
 
+    @Test
+    public void test_queryMonitorDataList(){
+        Response<List<MonitorDataDTO>> response = monitorController.queryMonitorDataList("","","");
+        log.info("测试结果: {}", JSON.toJSONString(response));
+    }
 }
