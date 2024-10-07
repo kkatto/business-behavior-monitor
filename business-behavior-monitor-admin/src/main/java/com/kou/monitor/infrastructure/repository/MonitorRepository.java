@@ -133,6 +133,12 @@ public class MonitorRepository implements IMonitorRepository {
         // 监控节点链路
         List<MonitorDataMapNodeLink> monitorDataMapNodeLinkList = monitorDataMapNodeLinkDao.queryMonitorNodeLinkConfigByMonitorId(monitorId);
 
+        /**
+         * Map<String, List<String>> fromMonitorNodeIdToNodeIds = monitorDataMapNodeLinks.stream()
+         *                 .collect(Collectors.groupingBy(MonitorDataMapNodeLink::getFromMonitorNodeId,
+         *                         Collectors.mapping(MonitorDataMapNodeLink::getToMonitorNodeId,
+         *                                 Collectors.toList())));
+         */
         Map<String, List<String>> fromMonitorNodeIdToNodeIdMap = new HashMap<>();
         for (MonitorDataMapNodeLink monitorDataMapNodeLink : monitorDataMapNodeLinkList) {
             String fromMonitorNodeId = monitorDataMapNodeLink.getFromMonitorNodeId();
