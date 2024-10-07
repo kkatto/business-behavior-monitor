@@ -1,6 +1,7 @@
 package com.kou.monitor.domain.service;
 
 import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
+import com.kou.monitor.domain.model.valobj.MonitorTreeConfigVO;
 import ognl.OgnlException;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ILogAnalyticalService {
     void doAnalytical(String systemName, String className, String methodName, List<String> logList) throws OgnlException;
 
     List<MonitorDataMapEntity> queryMonitorDataMapEntityList();
+
+    MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
 }

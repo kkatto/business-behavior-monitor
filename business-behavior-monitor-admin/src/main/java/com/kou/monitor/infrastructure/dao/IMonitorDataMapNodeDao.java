@@ -14,4 +14,6 @@ import java.util.List;
 public interface IMonitorDataMapNodeDao {
 
     List<MonitorDataMapNode> queryMonitoryDataMapNodeList(MonitorDataMapNode monitorDataMapNodeReq);
+
+    List<MonitorDataMapNode> queryMonitorNodeConfigByMonitorId(String monitorId);
 }
