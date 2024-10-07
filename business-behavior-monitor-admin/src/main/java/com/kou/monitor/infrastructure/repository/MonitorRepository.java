@@ -1,10 +1,12 @@
 package com.kou.monitor.infrastructure.repository;
 
 import com.kou.monitor.domain.model.entity.MonitorDataEntity;
+import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
 import com.kou.monitor.domain.model.valobj.GatherNodeExpressionVO;
 import com.kou.monitor.domain.repository.IMonitorRepository;
 import com.kou.monitor.infrastructure.dao.*;
 import com.kou.monitor.infrastructure.po.MonitorData;
+import com.kou.monitor.infrastructure.po.MonitorDataMap;
 import com.kou.monitor.infrastructure.po.MonitorDataMapNode;
 import com.kou.monitor.infrastructure.po.MonitorDataMapNodeField;
 import com.kou.monitor.infrastructure.redis.IRedisService;
@@ -108,5 +110,19 @@ public class MonitorRepository implements IMonitorRepository {
 
         String cacheKey = Constants.RedisKey.MONITOR_NODE_DATA_COUNT_KEY + monitorDataEntity.getMonitorId() + Constants.UNDERLINE + monitorDataEntity.getMonitorNodeId();
         redisService.incr(cacheKey);
+    }
+
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        List<MonitorDataMap> monitorDataMapList = monitorDataMapDao.queryMonitorDataMapEntityList();
+
+        List<MonitorDataMapEntity> monitorDataMapEntitieList = new ArrayList<>(monitorDataMapList.size());
+        for (MonitorDataMap monitorDataMap : monitorDataMapList) {
+            monitorDataMapEntitieList.add(MonitorDataMapEntity.builder()
+                    .monitorId(monitorDataMap.getMonitorId())
+                    .monitorName(monitorDataMap.getMonitorName())
+                    .build());
+        }
+        return monitorDataMapEntitieList;
     }
 }

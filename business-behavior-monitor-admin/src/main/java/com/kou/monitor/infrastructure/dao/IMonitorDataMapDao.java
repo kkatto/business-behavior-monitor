@@ -1,6 +1,9 @@
 package com.kou.monitor.infrastructure.dao;
 
+import com.kou.monitor.infrastructure.po.MonitorDataMap;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author KouJY
@@ -11,4 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMonitorDataMapDao {
 
     String queryMonitorNameByMonitoryId(String monitorId);
+
+    List<MonitorDataMap> queryMonitorDataMapEntityList();
 }

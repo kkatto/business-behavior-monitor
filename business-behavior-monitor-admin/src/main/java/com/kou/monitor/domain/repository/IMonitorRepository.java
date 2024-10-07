@@ -1,6 +1,7 @@
 package com.kou.monitor.domain.repository;
 
 import com.kou.monitor.domain.model.entity.MonitorDataEntity;
+import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
 import com.kou.monitor.domain.model.valobj.GatherNodeExpressionVO;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface IMonitorRepository {
     String queryMonitorNameByMonitorId(String monitorId);
 
     void saveMonitoryData(MonitorDataEntity monitorDataEntity);
+
+    List<MonitorDataMapEntity> queryMonitorDataMapEntityList();
 }

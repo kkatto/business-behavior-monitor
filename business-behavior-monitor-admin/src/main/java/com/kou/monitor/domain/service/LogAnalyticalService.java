@@ -2,6 +2,7 @@ package com.kou.monitor.domain.service;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.kou.monitor.domain.model.entity.MonitorDataEntity;
+import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
 import com.kou.monitor.domain.model.valobj.GatherNodeExpressionVO;
 import com.kou.monitor.domain.repository.IMonitorRepository;
 import com.kou.monitor.types.Constants;
@@ -73,5 +74,10 @@ public class LogAnalyticalService implements ILogAnalyticalService {
                 monitorRepository.saveMonitoryData(monitorDataEntity);
             }
         }
+    }
+
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        return monitorRepository.queryMonitorDataMapEntityList();
     }
 }
