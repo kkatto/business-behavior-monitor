@@ -44,6 +44,8 @@ public class RedisPush implements IPush {
                 .setPingConnectionInterval(0)
                 .setKeepAlive(true);
 
+        logger.info("业务监控启动启动完成 By business-behavior-monitor-sdk xiaofuge");
+
         this.redissonClient = Redisson.create(config);
     }
 
