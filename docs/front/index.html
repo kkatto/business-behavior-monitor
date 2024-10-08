@@ -113,6 +113,7 @@
     <div>
         <h1>监控地图</h1>
         <div id="monitorDisplayPanel"></div>
+        <button id="update">更新流程图</button>
     </div>
 
 
@@ -184,6 +185,9 @@
             fetchMonitorData(monitorId, monitorName, monitorNodeId);
         });
 
+        document.getElementById('update').addEventListener('click', function(event) {
+            window.open("update.html?monitorId=" + monitorId, '_blank');
+        });
     });
 
     function fetchData(monitorId) {

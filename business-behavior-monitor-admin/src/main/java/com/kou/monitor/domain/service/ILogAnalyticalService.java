@@ -2,6 +2,7 @@ package com.kou.monitor.domain.service;
 
 import com.kou.monitor.domain.model.entity.MonitorDataEntity;
 import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
+import com.kou.monitor.domain.model.entity.MonitorFlowDesignerEntity;
 import com.kou.monitor.domain.model.valobj.MonitorTreeConfigVO;
 import ognl.OgnlException;
 
@@ -21,4 +22,6 @@ public interface ILogAnalyticalService {
     MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
 
     List<MonitorDataEntity> queryMonitorDataList(MonitorDataEntity monitorDataEntity);
+
+    void updateMonitorFlowDesigner(MonitorFlowDesignerEntity monitorFlowDesignerEntity);
 }

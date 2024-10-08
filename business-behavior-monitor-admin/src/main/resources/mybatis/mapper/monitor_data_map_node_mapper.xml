@@ -29,4 +29,10 @@
         where monitor_id = #{monitorId}
     </select>
 
+    <update id="updateNodeConfig" parameterType="com.kou.monitor.infrastructure.po.MonitorDataMapNode">
+        update monitor_data_map_node
+        set loc = #{loc}
+        where monitor_id = #{monitorId} and monitor_node_id = #{monitorNodeId}
+    </update>
+
 </mapper>

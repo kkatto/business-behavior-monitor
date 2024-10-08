@@ -2,6 +2,7 @@ package com.kou.monitor.trigger.http;
 
 import com.kou.monitor.domain.model.entity.MonitorDataEntity;
 import com.kou.monitor.domain.model.entity.MonitorDataMapEntity;
+import com.kou.monitor.domain.model.entity.MonitorFlowDesignerEntity;
 import com.kou.monitor.domain.model.valobj.MonitorTreeConfigVO;
 import com.kou.monitor.domain.service.ILogAnalyticalService;
 import com.kou.monitor.infrastructure.po.MonitorData;
@@ -140,6 +141,51 @@ public class MonitorController {
         } catch (Exception e) {
             log.error("查询监控数据失败 monitorId:{}", monitorId, e);
             return Response.<List<MonitorDataDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @RequestMapping(value = "update_monitor_flow_designer", method = RequestMethod.POST)
+    public Response<Boolean> updateMonitorFlowDesigner(@RequestParam String monitorId, @RequestBody MonitorFlowDataDTO monitorFlowDataDTO) {
+        try {
+            log.info("更新监控图配置 monitorId:{}", monitorId);
+            List<MonitorFlowDataDTO.NodeData> nodeDataList = monitorFlowDataDTO.getNodeDataArray();
+            List<MonitorFlowDataDTO.LinkData> linkDataList = monitorFlowDataDTO.getLinkDataArray();
+
+            List<MonitorFlowDesignerEntity.Node> nodeList = new ArrayList<>();
+            for (MonitorFlowDataDTO.NodeData nodeData : nodeDataList) {
+                nodeList.add(MonitorFlowDesignerEntity.Node.builder()
+                        .monitorNodeId(nodeData.getKey())
+                        .loc(nodeData.getLoc())
+                        .build());
+            }
+
+            List<MonitorFlowDesignerEntity.Link> linkList = new ArrayList<>();
+            for (MonitorFlowDataDTO.LinkData linkData : linkDataList) {
+                linkList.add(MonitorFlowDesignerEntity.Link.builder()
+                        .from(linkData.getFrom())
+                        .to(linkData.getTo())
+                        .build());
+            }
+
+            MonitorFlowDesignerEntity monitorFlowDesignerEntity = MonitorFlowDesignerEntity.builder()
+                    .monitorId(monitorId)
+                    .nodeList(nodeList)
+                    .linkList(linkList)
+                    .build();
+
+            logAnalyticalService.updateMonitorFlowDesigner(monitorFlowDesignerEntity);
+
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(true)
+                    .build();
+        } catch (Exception e) {
+            log.info("更新监控图配置失败 monitorId:{}", monitorId, e);
+            return Response.<Boolean>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
