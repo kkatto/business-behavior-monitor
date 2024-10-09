@@ -1,18 +1,14 @@
 package com.kou.monitor.sdk.push.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.kou.monitor.sdk.model.LogMessage;
 import com.kou.monitor.sdk.push.IPush;
 import org.redisson.Redisson;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
-import org.redisson.api.listener.MessageListener;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.xml.bind.Marshaller;
 
 /**
  * @author KouJY
@@ -44,7 +40,7 @@ public class RedisPush implements IPush {
                 .setPingConnectionInterval(0)
                 .setKeepAlive(true);
 
-        logger.info("业务监控启动启动完成 By business-behavior-monitor-sdk xiaofuge");
+        logger.info("业务监控启动启动完成 By business-behavior-monitor-sdk xiaokou");
 
         this.redissonClient = Redisson.create(config);
     }
