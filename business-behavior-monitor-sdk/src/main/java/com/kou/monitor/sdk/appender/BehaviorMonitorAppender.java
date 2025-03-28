@@ -25,12 +25,14 @@ public class BehaviorMonitorAppender<E> extends AppenderBase<E> {
     private String host;
     // redis连接端口
     private Integer port;
+    // redis连接密码
+    private String password;
 
     private final IPush push = new RedisPush();
 
     @Override
     protected void append(E eventObject) {
-        push.open(host, port);
+        push.open(host, port, password);
         // 获取日志
         if (eventObject instanceof ILoggingEvent) {
             ILoggingEvent event = (ILoggingEvent) eventObject;
@@ -87,5 +89,13 @@ public class BehaviorMonitorAppender<E> extends AppenderBase<E> {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

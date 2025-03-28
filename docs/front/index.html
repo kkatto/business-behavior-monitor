@@ -170,7 +170,7 @@
         fetchData(monitorId);
 
         // Set interval to fetch data every 5 seconds
-        //setInterval(fetchData, 5000);
+        setInterval(() => fetchData(monitorId), 5000);
 
         // Fetch initial monitor data
         fetchMonitorData(monitorId);

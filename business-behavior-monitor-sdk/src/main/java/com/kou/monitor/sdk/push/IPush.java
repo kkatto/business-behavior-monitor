@@ -11,7 +11,7 @@ import com.kou.monitor.sdk.model.LogMessage;
  */
 public interface IPush {
 
-    void open(String host, Integer port);
+    void open(String host, Integer port, String password);
 
     void send(LogMessage logMessage);
 }

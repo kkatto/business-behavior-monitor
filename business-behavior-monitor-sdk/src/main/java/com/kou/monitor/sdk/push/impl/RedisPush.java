@@ -22,7 +22,7 @@ public class RedisPush implements IPush {
     private RedissonClient redissonClient;
 
     @Override
-    public synchronized void open(String host, Integer port) {
+    public synchronized void open(String host, Integer port, String password) {
         if (null != redissonClient && !redissonClient.isShutdown()) {
             return;
         }
@@ -31,6 +31,7 @@ public class RedisPush implements IPush {
         config.setCodec(JsonJacksonCodec.INSTANCE);
         config.useSingleServer()
                 .setAddress("redis://" + host + ":" + port)
+                .setPassword(password)
                 .setConnectionPoolSize(64)
                 .setConnectionMinimumIdleSize(10)
                 .setIdleConnectionTimeout(1000)
